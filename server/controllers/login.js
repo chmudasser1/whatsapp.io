@@ -1,25 +1,18 @@
 import Login from "../models/login.js";
-import bcrypt from "bcrypt";
+import { setUser } from "../service/auth.js"
 
 async function handlePostsignip(req, res) {
     const body = req.body;
-
     if (!body || !body.username || !body.email || !body.password) {
         return res.status(400).json({ msg: "All fields are required..." });
     }
 
     try {
-        const existingUser = await Login.findOne({ email: body.email });
-        if (existingUser) {
-            return res.status(400).json({ msg: "User  already exists with this email." });
-        }
-
-        const hashedPassword = await bcrypt.hash(body.password, 10);
-
+        //create new user
         const result = await Login.create({
             username: body.username,
             email: body.email,
-            password: hashedPassword,
+            password: body.password
         });
 
         console.log("result", result);
@@ -33,22 +26,25 @@ async function handlePostsignip(req, res) {
 
 async function handleLogin(req, res) {
     const { email, password } = req.body;
-
     if (!email || !password) {
         return res.status(400).json({ msg: "All fields are required..." });
     }
 
-    const user = await Login.findOne({ email });
+    const user = await Login.findOne({ email, password });
     if (!user) {
+        console.log("User nhi hhy")
         return res.status(404).json({ msg: "No record exists" });
+    } else {
+        const token = setUser(user);
+        res.cookie("socket", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict'
+        });
+        console.log("Token:", token)
+        return res.json({ msg: "Success", token });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        return res.status(401).json({ msg: "Invalid credentials" });
-    }
-
-    return res.json({ msg: "Success" });
 }
 
 export {
