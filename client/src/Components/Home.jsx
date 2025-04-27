@@ -3,12 +3,14 @@ import bg from "../assets/background.jpg";
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { showUSer } from '../features/data';
 const Home = () => {
     const [email, setEmailLogin] = useState('');
     const [password, setPasswordLogin] = useState('');
 
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
@@ -26,6 +28,8 @@ const Home = () => {
             if (response.data.msg === "Success") {
                 const header = response.data.token;
                 Cookies.set("socket", header)
+                console.log("Token in the header:", header)
+                dispatch(showUSer());
                 navigate("/chat")
                 console.log("Navigated to chat page:")
             }

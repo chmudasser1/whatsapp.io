@@ -37,9 +37,9 @@ async function handleLogin(req, res) {
     } else {
         const token = setUser(user);
         res.cookie("socket", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict'
+            httpOnly: false,
+            secure: false, // Set to true in production
+            sameSite: 'lax' // Change to 'lax' for development
         });
         console.log("Token:", token)
         return res.json({ msg: "Success", token });

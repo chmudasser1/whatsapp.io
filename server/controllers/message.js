@@ -4,14 +4,13 @@ import Message from "../models/message.js";
 export const getuserforchat = async (req, res) => {
 
     try {
-        // const loggedinuser = res.user._id;
-        // const filteruser = await Login.find({ _id: { $ne: loggedinuser } }).select("-password");
-        // res.status(200).json(filteruser)
         console.log("Logged in user tyy ayaa code");
-        const loggedinuser = req.params.id;
-        const allDbusers = await Login.find({ id: { $ne: loggedinuser } }).select('username');
-        const usernames = allDbusers.map(user => user.username);
-        return res.json(usernames);
+        const loggedinuser = req.user._id;
+        const allDbusers = await Login.find({ _id: { $ne: loggedinuser } }).select("-password");
+        console.log(allDbusers, "all db")
+        // const usernames = allDbusers.map(user => user.username);
+        // console.log("usernames", usernames)
+        return res.json(allDbusers);
     } catch (error) {
         console.log("Error in Getting User", error.message)
         res.status(500).json({ error: "Internal Server Error" })
@@ -20,6 +19,7 @@ export const getuserforchat = async (req, res) => {
 };
 export const getMessage = async (req, res) => {
     try {
+        console.log("message ty aayyS")
         const { id: userToChatId } = req.params
         const myId = req.user._id;
 
