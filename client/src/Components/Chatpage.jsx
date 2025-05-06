@@ -9,19 +9,24 @@ import Chatheader from './chatheader';
 import NewChat from './NewChat';
 import NoChatSelected from './NoChatSelected';
 import Chatroom from './Chatroom';
+import { useSocketContext } from '../context/Socket';
 
 const Chatpage = () => {
     const dispatch = useDispatch();
     const { chat, loading, error, selectuser } = useSelector((state) => state.app);
+    const { socket, onlineuser } = useSocketContext();
+
     const handleselectuser = (user) => {
-        console.log("handleselectuser called with:", user);
+        // console.log("handleselectuser called with:", user);
         if (selectuser?._id !== user._id) { // Prevent redundant dispatch
-            console.log("Dispatching setselectuser for user:", user);
+            // console.log("Dispatching setselectuser for user:", user);
             dispatch(setselectuser(user)); // Dispatch the action with the user object
         } else {
             console.log("User is already selected, skipping dispatch.");
         }
     };
+
+
     useEffect(() => {
         dispatch(showUSer());
     }, [dispatch]);
@@ -42,7 +47,19 @@ const Chatpage = () => {
                     <div key={user._id} className={` py-3 ${selectuser?._id === user._id && "bg-slate-800"}`}>
                         <div className='px-2 flex gap-2 transform hover:scale-105 transition-transform duration-200' onClick={() => handleselectuser(user)} >
                             <div><CgProfile className='pt-2 text-white size-10 cursor-pointer' /></div>
-                            <h1 className='pt-2 text-xl text-white cursor-pointer' >{user.username}</h1>
+                            <div>
+                                <h1 className='pt-2 text-xl text-white cursor-pointer' >{user.username}</h1>
+                                <div>
+                                    {onlineuser && (() => {
+                                        console.log("Online ids", onlineuser);
+                                        const isonline = onlineuser.includes(user._id);
+                                        console.log("Online USer ids", isonline);
+                                        return (
+                                            <div className='text-[13px]'>{isonline ? <p>Online</p> : <p>Offline</p>}</div>
+                                        );
+                                    })()}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )) : <h1>Something is wrong!</h1>}

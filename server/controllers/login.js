@@ -15,7 +15,7 @@ async function handlePostsignip(req, res) {
             password: body.password
         });
 
-        console.log("result", result);
+        // console.log("result", result);
 
         return res.status(201).json({ msg: "Success", id: result._id });
     } catch (error) {
@@ -41,8 +41,8 @@ async function handleLogin(req, res) {
             secure: false, // Set to true in production
             sameSite: 'lax' // Change to 'lax' for development
         });
-        console.log("Token:", token)
-        return res.json({ msg: "Success", token });
+        // console.log("Token:", token)
+        return res.json({ msg: "Success", token, user });
     }
 
 }

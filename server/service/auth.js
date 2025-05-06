@@ -11,7 +11,7 @@ function setUser(user) {
 }
 
 function getUser(token) {
-    console.log("getuser par ayaa hy code", token)
+    // console.log("getuser par ayaa hy code", token)
     if (!token) return null;
     try {
         const decoded = jwt.verify(token, secret);

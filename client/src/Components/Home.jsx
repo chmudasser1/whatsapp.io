@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
-import { showUSer } from '../features/data';
+import { showUSer, UserMatchForMessage } from '../features/data';
 const Home = () => {
     const [email, setEmailLogin] = useState('');
     const [password, setPasswordLogin] = useState('');
@@ -18,7 +18,7 @@ const Home = () => {
             email,
             password
         };
-        console.log("Login Data", loginData);
+        // console.log("Login Data", loginData);
         axios.post("http://localhost:8000/api/login", loginData, {
             headers: {
                 Authorization: `Bearer ${Cookies.get('socket')}`,
@@ -29,9 +29,12 @@ const Home = () => {
                 const header = response.data.token;
                 Cookies.set("socket", header)
                 console.log("Token in the header:", header)
+                const Userformessage = response.data.user;
+                console.log("Userformessage", Userformessage)
+                dispatch(UserMatchForMessage(Userformessage));
                 dispatch(showUSer());
                 navigate("/chat")
-                console.log("Navigated to chat page:")
+                // console.log("Navigated to chat page:")
             }
         }
 
