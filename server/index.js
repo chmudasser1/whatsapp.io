@@ -16,8 +16,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-
-connectUserdb('mongodb://127.0.0.1:27017/WebSocket-Login');
+const mongodburl='mongodb+srv://mmudasser212:112233aa@cluster0.v2tmgef.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+connectUserdb(mongodburl);
 
 app.use("/api/", loginapi);
 app.use("/api/message", messageapi);

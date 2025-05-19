@@ -132,9 +132,9 @@ export const Chat = createSlice({
     // },
     reducers: {
         addMessage: (state, action) => {
-          state.messages.push(action.payload); // Add the new message to the messages array
+            state.messages.push(action.payload); // Add the new message to the messages array
         },
-      },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(showUSer.pending, (state) => {
@@ -177,18 +177,18 @@ export const Chat = createSlice({
                 state.error = action.payload;
             })
             .addCase(Sendmessages.pending, (state) => {
-                state.loading = true;
+                // state.loading = true;
                 state.error = null;
             })
             .addCase(Sendmessages.fulfilled, (state, action) => {
-                state.loading = false;
+                // state.loading = false;
                 // console.log("Message sent successfully:", action.payload);
                 // Optionally, you can update the messages state or perform other actions
                 // For example, you might want to add the new message to the messages array
                 state.messages.push(action.payload); // Assuming the payload contains the sent message
             })
             .addCase(Sendmessages.rejected, (state, action) => {
-                state.loading = false;
+                // state.loading = false;
                 state.error = action.payload; // Store the error message
             })
             .addCase(UserMatchForMessage.pending, (state) => {

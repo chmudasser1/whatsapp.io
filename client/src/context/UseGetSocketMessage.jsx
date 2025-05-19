@@ -11,9 +11,21 @@ const UseGetSocketMessage = () => {
         socket.on("newMessage", (newMessage) => {
             console.log('Socket connected:', socket.id);
             console.log('Socket Messages :', messages);
-            dispatch(Sendmessages({ newMessage }));
-            console.log("Dispatch", dispatch)
-            console.log("NewMessage", newMessage)
+            console.log('New Message:', newMessage);
+
+            // Extract the text string safely
+            let text = newMessage?.text;
+            if (typeof text === 'object' && text?.text) {
+                text = text.text;
+            }
+
+            // Check if the new message is already in the messages array
+            const isMessageExists = messages.some((message) => message._id === newMessage._id);
+            if (!isMessageExists && typeof text === 'string') {
+                dispatch(Sendmessages(text));
+            } else {
+                console.log("Message already exists in the array or text is invalid");
+            }
         });
         return () => {
             socket.off("newMessage")
