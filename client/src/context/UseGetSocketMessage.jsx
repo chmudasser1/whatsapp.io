@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSocketContext } from './Socket'
 import { useDispatch, useSelector } from 'react-redux';
-import { Sendmessages } from '../features/data';
+import { addMessage } from '../features/data';
 
 const UseGetSocketMessage = () => {
     const { socket } = useSocketContext();
@@ -19,18 +19,19 @@ const UseGetSocketMessage = () => {
                 text = text.text;
             }
 
-            // Check if the new message is already in the messages array
-            const isMessageExists = messages.some((message) => message._id === newMessage._id);
-            if (!isMessageExists && typeof text === 'string') {
-                dispatch(Sendmessages(text));
+            // ...existing code...
+            // Remove the duplicate check
+            if (typeof text === 'string') {
+                dispatch(addMessage({ ...newMessage, text }));
             } else {
-                console.log("Message already exists in the array or text is invalid");
+                console.log("Text is invalid");
             }
+            // ...existing code...
         });
         return () => {
             socket.off("newMessage")
         };
-    }, [socket, messages, Sendmessages, dispatch]);
+    }, [socket, messages, addMessage, dispatch]);
 }
 
 export default UseGetSocketMessage
