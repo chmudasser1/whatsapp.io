@@ -8,7 +8,7 @@ export const showUSer = createAsyncThunk('showUser ', async (args, { rejectWithV
     }
 
     try {
-        const response = await fetch("http://localhost:8000/api/message/users", {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/users`, {
             credentials: "include",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -33,7 +33,7 @@ export const showUSer = createAsyncThunk('showUser ', async (args, { rejectWithV
 
 export const getmessage = createAsyncThunk('getmessage', async (data, { rejectWithValue }) => {
     const token = Cookies.get('socket')
-    const response = await fetch(`http://localhost:8000/api/message/${data._id}`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/${data._id}`, {
         credentials: "include",
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -69,7 +69,7 @@ export const Sendmessages = createAsyncThunk('Sendmessages', async (text, { reje
     const token = Cookies.get('socket');
 
     try {
-        const response = await fetch(`http://localhost:8000/api/message/send/${selecteduser}`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/send/${selecteduser}`, {
             method: 'POST', // Assuming you want to send a message
             credentials: "include",
             headers: {

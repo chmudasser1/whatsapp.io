@@ -14,7 +14,7 @@ export const SocketProvider = ({ children }) => {
     const [onlineuser, setOnlineUser] = useState([]);
     useEffect(() => {
         if (userformessage) {
-            const socket = io("http://localhost:8000/", {
+            const socket = io(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/`, {
                 query: {
                     userId: userformessage._id,
                 }
