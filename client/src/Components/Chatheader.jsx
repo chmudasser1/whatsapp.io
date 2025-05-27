@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoClose } from "react-icons/io5";
 import { setselectuser } from '../features/data';
 
-const Chatheader = () => {
+const ChatHeader = () => {
   const { selectuser } = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
@@ -23,4 +23,4 @@ const Chatheader = () => {
   )
 }
 
-export default Chatheader
+export default ChatHeader
