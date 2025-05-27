@@ -1,4 +1,5 @@
 import express from "express";
+import 'dotenv/config';
 import cors from "cors";
 import loginapi from "./routes/login.js"
 import messageapi from "./routes/message.js"
@@ -7,16 +8,20 @@ import restrictToUseSocit from "./middlewares/auth.js";
 import { app, server } from "./lib/socket.js";
 
 
-const port = 8000;
+const port = process.env.PORT;
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-const mongodburl='mongodb+srv://mmudasser212:112233aa@cluster0.v2tmgef.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const mongodburl = process.env.MONGODB_URL;
+if (!mongodburl) {
+    console.error("MongoDB URL is not defined in environment variables.");
+    process.exit(1);
+}
 connectUserdb(mongodburl);
 
 app.use("/api/", loginapi);

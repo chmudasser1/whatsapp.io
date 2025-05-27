@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Home from "./Components/Home"
 import Chatpage from "./Components/Chatpage"
-import Signup from "./Components/signup"
+import Signup from "./Components/Signup"
 function App() {
  
   return (

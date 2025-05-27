@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const secret = "websocket"
+const secret = process.env.JWT_SECRET
 
 function setUser(user) {
     const payload = {
