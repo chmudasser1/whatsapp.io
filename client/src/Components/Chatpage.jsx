@@ -40,7 +40,7 @@ const Chatpage = () => {
                     <IoMdContacts className='pt-4 pb-4 text-white size-20' />
                     <h1 className='pt-4 pb-4 text-white text-5xl font-serif font-bold text-center'>Contact</h1>
                 </div>
-                {Array.isArray(chat) ? chat.map((user) => (
+                {Array.isArray(chat) ? chat?.map((user) => (
                     <div key={user._id} className={` py-3 ${selectuser?._id === user._id && "bg-slate-800"}`}>
                         <div className='px-2 flex gap-2 transform hover:scale-105 transition-transform duration-200' onClick={() => handleselectuser(user)} >
                             <div><CgProfile className='pt-2 text-white size-10 cursor-pointer' /></div>
