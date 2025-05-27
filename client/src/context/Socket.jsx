@@ -12,27 +12,28 @@ export const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const { userformessage } = useSelector((state) => state.app);
     const [onlineuser, setOnlineUser] = useState([]);
-    useEffect(() => {
-        if (userformessage) {
-            const socket = io(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/`, {
-                query: {
-                    userId: userformessage._id,
-                }
-            });
-            setSocket(socket);
-            socket.on("getonline", (users) => {
-                setOnlineUser(users)
-                console.log("Socket disconnected")
-            })
-            return () => socket.close();
-        }
-        else {
-            if (socket) {
-                socket.close();
-                setSocket(null);
+  useEffect(() => {
+    let socketInstance;
+    if (userformessage) {
+        socketInstance = io(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/`, {
+            query: {
+                userId: userformessage._id,
             }
+        });
+        setSocket(socketInstance);
+        socketInstance.on("getonline", (users) => {
+            setOnlineUser(users)
+            console.log("Socket disconnected")
+        });
+    } else {
+        setSocket(null);
+    }
+    return () => {
+        if (socketInstance) {
+            socketInstance.close();
         }
-    }, [userformessage]);
+    };
+}, [userformessage]);
 
 
     return (
