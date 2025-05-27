@@ -5,7 +5,7 @@ import { setselectuser, showUSer } from '../features/data';
 import { IoMdContacts } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { FaUserSecret } from "react-icons/fa";
-import Chatheader from './chatheader';
+import Chatheader from './ChatHeader';
 import NewChat from './NewChat';
 import NoChatSelected from './NoChatSelected';
 import Chatroom from './Chatroom';
