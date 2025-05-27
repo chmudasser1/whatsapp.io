@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getmessage } from '../features/data.js';
-import Chatheader from './ChatHeader.jsx';
+import Chatheader from './ChatHeader';
 import NewChat from './NewChat';
 import { formatMessageTime } from '../lib/utils.js';
 import UseGetSocketMessage from '../context/UseGetSocketMessage.jsx';
