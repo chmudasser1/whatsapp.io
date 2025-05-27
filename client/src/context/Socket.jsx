@@ -27,8 +27,10 @@ export const SocketProvider = ({ children }) => {
             return () => socket.close();
         }
         else {
-            socket.close();
-            setSocket(null);
+            if (socket) {
+                socket.close();
+                setSocket(null);
+            }
         }
     }, [userformessage]);
 
