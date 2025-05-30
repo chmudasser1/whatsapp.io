@@ -15,7 +15,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     let socketInstance;
     if (userformessage) {
-        socketInstance = io(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/`, {
+        socketInstance = io(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}`, {
             query: {
                 userId: userformessage._id,
             }

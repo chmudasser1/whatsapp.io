@@ -18,7 +18,7 @@ const Signup = () => {
             email,
             password
         }
-        axios.post(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/signup`, signupData, {
+        axios.post(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}api/signup`, signupData, {
             headers: {
                 'Content-Type': 'application/json',
             },
