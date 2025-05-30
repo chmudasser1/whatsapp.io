@@ -7,7 +7,7 @@ import connectUserdb from "./connection/connection.js";
 import restrictToUseSocit from "./middlewares/auth.js";
 import { app, server } from "./lib/socket.js";
 
-
+dotehnv.config();
 const port = process.env.PORT;
 app.use(express.json());
 
@@ -23,7 +23,9 @@ if (!mongodburl) {
     process.exit(1);
 }
 connectUserdb(mongodburl);
-
+app.get("/", (req, res) => {
+    res.send("WhatsApp.io backend is running!");
+});
 app.use("api/", loginapi);
 app.use("api/message", messageapi);
 
