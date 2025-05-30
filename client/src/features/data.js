@@ -8,7 +8,7 @@ export const showUSer = createAsyncThunk('showUser ', async (args, { rejectWithV
     }
 
     try {
-        const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/sapi/message/users`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/users`, {
             credentials: "include",
             headers: {
                 "Authorization": `Bearer ${token}`,
