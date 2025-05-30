@@ -1,5 +1,5 @@
 import express from "express";
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import cors from "cors";
 import loginapi from "./routes/login.js"
 import messageapi from "./routes/message.js"
