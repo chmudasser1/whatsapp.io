@@ -7,7 +7,7 @@ import connectUserdb from "./connection/connection.js";
 import restrictToUseSocit from "./middlewares/auth.js";
 import { app, server } from "./lib/socket.js";
 
-dotehnv.config();
+dotenv.config();
 const port = process.env.PORT;
 app.use(express.json());
 
