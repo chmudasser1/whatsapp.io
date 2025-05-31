@@ -12,9 +12,15 @@ const port = process.env.PORT;
 app.use(express.json());
 const allowedOrigins = [process.env.FRONTEND_URL];
 
-// Allow all origins (not recommended for production)
 app.use(cors({
-    origin: '*',
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
