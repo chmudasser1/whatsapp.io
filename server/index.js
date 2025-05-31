@@ -34,8 +34,8 @@ connectUserdb(mongodburl);
 app.get("/", (req, res) => {
     res.send("WhatsApp.io backend is running!");
 });
-app.use("api/", loginapi);
-app.use("api/message", messageapi);
+app.use("/api/", loginapi);
+app.use("/api/message", messageapi);
 
 server.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
