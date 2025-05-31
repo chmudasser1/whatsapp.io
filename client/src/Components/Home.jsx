@@ -19,7 +19,7 @@ const Home = () => {
             password
         };
         // console.log("Login Data", loginData);
-        axios.post(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}api/login`, loginData, {
+        axios.post(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/login`, loginData, {
             headers: {
                 Authorization: `Bearer ${Cookies.get('socket')}`,
             },
