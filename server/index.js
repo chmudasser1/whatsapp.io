@@ -10,10 +10,8 @@ import { app, server } from "./lib/socket.js";
 dotenv.config();
 const port = process.env.PORT;
 app.use(express.json());
-const allowedOrigins = [process.env.FRONTEND_URL];
-
 app.use(cors({
-    origin: '*',
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
