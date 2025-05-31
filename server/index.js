@@ -11,7 +11,7 @@ dotenv.config();
 const port = process.env.PORT;
 app.use(express.json());
 app.use(cors({
-    origin: 'https://whatsapp-io-yazl.vercel.app',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
