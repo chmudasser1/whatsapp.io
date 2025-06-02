@@ -25,7 +25,7 @@ connectUserdb(mongodburl);
 app.get("/", (req, res) => {
     res.send("WhatsApp.io backend is running!");
 });
-app.use(loginapi);
+app.use("",loginapi);
 app.use("api/message", messageapi);
 
 server.listen(port, () => {
