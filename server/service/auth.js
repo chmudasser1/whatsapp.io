@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
-
-const secret = process.env.JWT_SECRET
-
+import dotenv from 'dotenv';
+dotenv.config();
+const secret = process.env.JWT_SECRET;
+console.log("secret", secret);
 function setUser(user) {
     const payload = {
         _id: user._id,

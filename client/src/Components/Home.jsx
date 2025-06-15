@@ -19,12 +19,7 @@ const Home = () => {
             password
         };
         // console.log("Login Data", loginData);
-        axios.post(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}login`, loginData, {
-            headers: {
-                Authorization: `Bearer ${Cookies.get('socket')}`,
-            },
-            withCredentials: true,
-        }).then(response => {
+        axios.post(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/login`, loginData).then(response => {
             if (response.data.msg === "Success") {
                 const header = response.data.token;
                 Cookies.set("socket", header)

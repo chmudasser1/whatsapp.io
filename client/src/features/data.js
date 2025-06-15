@@ -9,10 +9,11 @@ export const showUSer = createAsyncThunk('showUser ', async (args, { rejectWithV
 
     try {
         const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/users`, {
-            credentials: "include",
+            // credentials: "include",
             headers: {
                 "Authorization": `Bearer ${token}`,
             },
+            method: 'GET'
         });
 
         // Check if the response is okay
@@ -34,11 +35,12 @@ export const showUSer = createAsyncThunk('showUser ', async (args, { rejectWithV
 export const getmessage = createAsyncThunk('getmessage', async (data, { rejectWithValue }) => {
     const token = Cookies.get('socket')
     const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/${data._id}`, {
-        credentials: "include",
+        // credentials: "include",
         headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         },
+        method: 'GET'
     });
 
     try {
@@ -71,7 +73,7 @@ export const Sendmessages = createAsyncThunk('Sendmessages', async (text, { reje
     try {
         const response = await fetch(`${import.meta.env.VITE_REACT_APP_SEVER_BASEURL}/api/message/send/${selecteduser}`, {
             method: 'POST', // Assuming you want to send a message
-            credentials: "include",
+            // credentials: "include",
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json"
