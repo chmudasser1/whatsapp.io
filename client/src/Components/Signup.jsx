@@ -43,7 +43,7 @@ const Signup = () => {
                         <form onSubmit={handleSignupSubmit}>
                             <label className='text-3xl text-white font-bold'>Username</label><br />
                             <input className='rounded-lg px-2 w-80 py-2' placeholder='username' type="text" required value={username} onChange={(e) => setUsernameSignup(e.target.value)} /><br />
-                            <label className='text-3xl text-white font-bold'>Email</label><br />
+                            <label className='text-3xl text-white font-bold  '>Email</label><br />
                             <input className='rounded-lg px-2 w-80 py-2' placeholder='email' type="email" required value={email} onChange={(e) => setEmailSignup(e.target.value)} /><br />
                             <label className='text-3xl text-white font-bold'>Password</label><br />
                             <input className='rounded-lg px-2 w-80 py-2' placeholder='password' type="password" required value={password} onChange={(e) => setPasswordSignup(e.target.value)} /><br />
