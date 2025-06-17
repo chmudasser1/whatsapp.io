@@ -17,7 +17,7 @@ async function handlePostsignip(req, res) {
 			password: body.password,
 		});
 
-		// console.log("result", result);
+		console.log("result", result);
 
 		return res.status(201).json({ msg: 'Success', id: result._id });
 	} catch (error) {
