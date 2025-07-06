@@ -16,7 +16,7 @@ const Chatheader = () => {
       <div className='container mx-auto px-4'>
         <div className='flex justify-between items-center'>
           <h1 className='text-xl font-serif font-bold text-white'>{selectuser.username}</h1>
-          <IoClose className='text-white size-7' onClick={SetSelectedUserHandeler} />
+          <IoClose className='text-white size-0 md:size-7' onClick={SetSelectedUserHandeler} />
         </div>
       </div>
     </div>
